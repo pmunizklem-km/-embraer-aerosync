@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DietaFit AI - Plataforma Inteligente de Dieta e Treino</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo">
+          <i class="fas fa-leaf"></i>
+          <span>DietaFit <span class="logo-accent">AI</span></span>
+        </div>
+        <div class="nav-links">
+          <a href="#inicio" class="active">Início</a>
+          <a href="#calculadora">Calculadora</a>
+          <a href="#como-funciona">Como Funciona</a>
+        </div>
+        <button class="mobile-toggle" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="inicio" class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <span class="hero-badge"><i class="fas fa-robot"></i> Inteligência Artificial</span>
+          <h1>Sua dieta inteligente<br>com <span class="gradient-text">IA</span></h1>
+          <p>Descubra um plano alimentar e de treinos personalizado criado por inteligência artificial. Resultados reais com substituições inteligentes e vídeos passo a passo.</p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-num">10k+</span>
+              <span class="hero-stat-label">Dietas Geradas</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">500+</span>
+              <span class="hero-stat-label">Exercícios</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">95%</span>
+              <span class="hero-stat-label">Satisfação</span>
+            </div>
+          </div>
+          <a href="#calculadora" class="btn-primary">
+            <i class="fas fa-arrow-right"></i>
+            Começar Agora
+          </a>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <i class="fas fa-utensils"></i>
+            <span>Dieta<br>Personalizada</span>
+          </div>
+          <div class="hero-card hero-card-2">
+            <i class="fas fa-dumbbell"></i>
+            <span>Treino<br>Completo</span>
+          </div>
+          <div class="hero-card hero-card-3">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Substituições<br>Inteligentes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadora" class="calculator-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fas fa-calculator"></i> Calculadora Inteligente</span>
+        <h2>Conte sobre você</h2>
+        <p>Preencha seus dados que nossa IA criará o plano perfeito para atingir seus objetivos.</p>
+      </div>
+
+      <form id="dietaForm" class="calc-form" onsubmit="event.preventDefault(); gerarPlano();">
+        <div class="form-grid">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> Nome</label>
+            <input type="text" id="nome" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> Idade</label>
+            <input type="number" id="idade" placeholder="Ex: 30" min="12" max="120" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-venus-mars"></i> Gênero</label>
+            <select id="genero" required>
+              <option value="">Selecione...</option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-ruler-vertical"></i> Altura (cm)</label>
+            <input type="number" id="altura" placeholder="Ex: 170" step="0.1" min="100" max="250" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-weight"></i> Peso Atual (kg)</label>
+            <input type="number" id="pesoAtual" placeholder="Ex: 80" step="0.1" min="20" max="400" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-bullseye"></i> Peso Alvo (kg)</label>
+            <input type="number" id="pesoAlvo" placeholder="Ex: 70" step="0.1" min="20" max="400" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-running"></i> Nível de Atividade</label>
+            <select id="atividade" required>
+              <option value="">Selecione...</option>
+              <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
+              <option value="1.375">Levemente ativo (1-3 dias/semana)</option>
+              <option value="1.55">Moderadamente ativo (3-5 dias/semana)</option>
+              <option value="1.725">Muito ativo (6-7 dias/semana)</option>
+              <option value="1.9">Extremamente ativo (2x/dia)</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label><i class="fas fa-trophy"></i> Objetivos (selecione um ou mais)</label>
+            <div class="checkbox-group" id="objetivosGroup">
+              <label class="checkbox-label">
+                <input type="checkbox" name="objetivos" value="perder">
+                <span>Perder Peso</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="objetivos" value="ganhar">
+                <span>Ganhar Massa Muscular</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="objetivos" value="definir">
+                <span>Definir (perder gordura e ganhar massa)</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="objetivos" value="forca">
+                <span>Ganhar Força</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="objetivos" value="manter">
+                <span>Manter Peso</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="objetivos" value="condicionamento">
+                <span>Melhorar Condicionamento</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label><i class="fas fa-ban"></i> Restrições Alimentares</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="restricoes" value="vegetariano">
+                <span>Vegetariano</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="restricoes" value="vegano">
+                <span>Vegano</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="restricoes" value="sem_gluten">
+                <span>Sem Glúten</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="restricoes" value="sem_lactose">
+                <span>Sem Lactose</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="restricoes" value="nenhuma" checked>
+                <span>Nenhuma</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="btnGerar">
+          <i class="fas fa-magic"></i>
+          Gerar Plano com IA
+          <div class="spinner" id="spinner"></div>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section id="resultados" class="results-section" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fas fa-check-circle"></i> Seu Plano Personalizado</span>
+        <h2 id="saudacaoNome"></h2>
+        <p>Plano criado com inteligência artificial baseado nos seus dados e objetivos.</p>
+      </div>
+
+      <div class="dashboard-cards">
+        <div class="dash-card">
+          <div class="dash-card-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="dash-card-info">
+            <span class="dash-card-label">Calorias Diárias</span>
+            <span class="dash-card-value" id="caloriasDiarias">0</span>
+            <span class="dash-card-unit">kcal</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+            <i class="fas fa-drumstick-bite"></i>
+          </div>
+          <div class="dash-card-info">
+            <span class="dash-card-label">Proteínas</span>
+            <span class="dash-card-value" id="proteinasMacro">0</span>
+            <span class="dash-card-unit">g/dia</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+            <i class="fas fa-bread-slice"></i>
+          </div>
+          <div class="dash-card-info">
+            <span class="dash-card-label">Carboidratos</span>
+            <span class="dash-card-value" id="carboidratosMacro">0</span>
+            <span class="dash-card-unit">g/dia</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">
+            <i class="fas fa-cheese"></i>
+          </div>
+          <div class="dash-card-info">
+            <span class="dash-card-label">Gorduras</span>
+            <span class="dash-card-value" id="gordurasMacro">0</span>
+            <span class="dash-card-unit">g/dia</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon" style="background:linear-gradient(135deg,#fa709a,#fee140)">
+            <i class="fas fa-weight"></i>
+          </div>
+          <div class="dash-card-info">
+            <span class="dash-card-label">IMC Atual</span>
+            <span class="dash-card-value" id="imcAtual">0</span>
+            <span class="dash-card-unit" id="imcClassificacao"></span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="dash-card-info">
+            <span class="dash-card-label">Tempo Estimado</span>
+            <span class="dash-card-value" id="tempoEstimado">0</span>
+            <span class="dash-card-unit">semanas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="macro-bar-section">
+        <h3><i class="fas fa-chart-pie"></i> Distribuição de Macronutrientes</h3>
+        <div class="macro-bar">
+          <div class="macro-bar-segment macro-protein" style="width:35%">
+            <span>Proteínas 35%</span>
+          </div>
+          <div class="macro-bar-segment macro-carbs" style="width:40%">
+            <span>Carboidratos 40%</span>
+          </div>
+          <div class="macro-bar-segment macro-fat" style="width:25%">
+            <span>Gorduras 25%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pdf-actions">
+        <button class="btn-pdf" onclick="gerarPDF()">
+          <i class="fas fa-file-pdf"></i>
+          Salvar como PDF
+        </button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('dieta', this)">
+          <i class="fas fa-utensils"></i> Plano Alimentar
+        </button>
+        <button class="tab-btn" onclick="switchTab('treino', this)">
+          <i class="fas fa-dumbbell"></i> Plano de Treino
+        </button>
+      </div>
+
+      <div id="tab-dieta" class="tab-content active">
+        <div class="dieta-grid" id="dietaGrid"></div>
+      </div>
+
+      <div id="tab-treino" class="tab-content">
+        <div class="treino-grid" id="treinoGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="how-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> Como Funciona</span>
+        <h2>Inteligência Artificial aplicada à sua saúde</h2>
+        <p>Nossa IA analisa seus dados e cria o plano ideal para você.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <i class="fas fa-clipboard-list"></i>
+          <h3>Cadastro de Dados</h3>
+          <p>Informe seu peso, altura, idade e objetivos pessoais.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <i class="fas fa-brain"></i>
+          <h3>Análise com IA</h3>
+          <p>Nossa inteligência artificial calcula suas necessidades calóricas e nutricionais.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <i class="fas fa-utensils"></i>
+          <h3>Dieta + Substituições</h3>
+          <p>Receba um plano alimentar completo com opções inteligentes de substituição.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <i class="fas fa-video"></i>
+          <h3>Treino em Vídeo</h3>
+          <p>Treino completo com explicações passo a passo e vídeos de cada exercício.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <i class="fas fa-leaf"></i>
+          <span>DietaFit AI</span>
+        </div>
+        <p class="footer-text">Transformando vidas com tecnologia e inteligência artificial.</p>
+        <p class="footer-disclaimer">
+          <i class="fas fa-info-circle"></i>
+          Consulte sempre um profissional de saúde antes de iniciar qualquer dieta ou programa de exercícios.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="pdfContent"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
