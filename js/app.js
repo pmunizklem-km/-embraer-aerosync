@@ -838,7 +838,7 @@ table.dados td:first-child{font-weight:600;width:160px;}
 @media print{body{padding:10px;}}`;
 
   const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>DietaFit - ${p.nome}</title><style>${style}</style></head>
-<body><h1>DietaFit AI</h1><p class="sub">Plano Personalizado de Dieta e Treino</p><hr>
+<body><h1>DietaFit IA</h1><p class="sub">Plano Personalizado de Dieta e Treino</p><hr>
 <h2>Dados do Usuario</h2>
 <table class="dados">
 <tr><td>Nome</td><td>${p.nome}</td></tr>
@@ -852,7 +852,7 @@ table.dados td:first-child{font-weight:600;width:160px;}
 </table>
 <h2>Plano Alimentar</h2>${mealsHtml}
 <h2>Plano de Treino</h2>${workoutsHtml}
-<div class="footer"><p>Consulte sempre um profissional de saude antes de iniciar qualquer dieta ou programa de exercicios.</p><p>Gerado por DietaFit AI</p></div>
+<div class="footer"><p>Consulte sempre um profissional de saude antes de iniciar qualquer dieta ou programa de exercicios.</p><p>Gerado por DietaFit IA</p></div>
 </body></html>`;
 
   const iframe = document.createElement('iframe');
