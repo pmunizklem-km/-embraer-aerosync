@@ -796,8 +796,9 @@ function gerarPDF() {
       mealsHtml += `<tr><td style="padding:5px 10px;border-bottom:1px solid #eee;font-size:12px;"><strong>${i.nome}</strong><br><span style="color:#888;font-size:10px;">${i.qty}</span></td>
         <td style="padding:5px 10px;border-bottom:1px solid #eee;text-align:right;font-weight:700;color:#2ecc71;font-size:12px;white-space:nowrap;">${i.kcal} kcal</td></tr>`;
       if (i.substituicoes && i.substituicoes.length) {
-        mealsHtml += `<tr><td colspan="2" style="padding:2px 10px 6px 10px;font-size:10px;color:#888;border-bottom:1px solid #eee;">
-          <em>Substitutos:</em> ${i.substituicoes.map(s => `<span style="display:inline-block;margin:1px 4px 1px 0;padding:1px 6px;background:#f0fdf4;border-radius:3px;border:1px solid #d4edda;">${s.nome} (${s.kcal} kcal)</span>`).join(', ')}
+        mealsHtml += `<tr><td colspan="2" style="padding:4px 10px 8px 10px;font-size:10px;color:#555;border-bottom:1px solid #eee;">
+          <div style="font-weight:600;color:#2ecc71;margin-bottom:3px;">&#8594; Opções de substituição:</div>
+          ${i.substituicoes.map(s => `<span style="display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;background:#f0fdf4;border-radius:4px;border:1px solid #d4edda;font-size:9px;white-space:nowrap;">${s.nome} (${s.kcal} kcal)</span>`).join('')}
         </td></tr>`;
       }
     }
